@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Queen Simran</title>
+    <title>For My Pyaari Simu</title>
     <style>
         body {
             display: flex;
@@ -14,7 +14,7 @@
             background-color: #fff0f3;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
-            touch-action: none; /* Helps with mobile button movement */
+            touch-action: none;
         }
         .container {
             text-align: center;
@@ -68,7 +68,7 @@
 
     <div class="container">
         <div id="askContainer">
-            <h1>Simran Kalra,<br>Will you be my Valentine? ❤️</h1>
+            <h1>Simu,<br>Will you be my Valentine? ❤️</h1>
             <div class="btn-container">
                 <button id="yesBtn" onclick="showLove()">YES</button>
                 <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()" ontouchstart="moveNo()">NO</button>
@@ -76,23 +76,19 @@
         </div>
 
         <div id="message">
-            <h2>My Dearest Simran,</h2>
-            <p>From the moment you accepted my proposal, my world has felt like a true Empire. You are the peace in my heart and the strength in my soul.</p>
-            <p>I promise to cherish you, protect our bond from any "Buri Nazar," and build a life with you that is more beautiful than any script I've ever written.</p>
-            <p>I love you eternally.</p>
-            <p style="text-align: center;"><strong>Yours forever, Shivay</strong></p>
+            <h2>My Dearest Simran ❤️</h2>
+            <p>From the moment you came into my life, sab kuch acha lagne laga hai. Tum achi hoti ho toh mai aur acha ho jata hu.</p>
+            <p>You are the peace in my heart and the strength in my soul as I build our Empire. I promise to cherish you and protect our bond from any "Buri Nazar."</p>
+            <p>Tum sabse special ho mere liye 💝</p>
+            <p style="text-align: center; margin-top: 20px;"><strong>Yours forever, Shivay ❤️</strong></p>
         </div>
     </div>
 
     <script>
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            const container = document.querySelector('.container');
-            
-            // Randomly move the button anywhere on the screen
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
             noBtn.style.position = 'fixed';
