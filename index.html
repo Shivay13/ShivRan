@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Queen Simran</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            touch-action: none; /* Helps with mobile button movement */
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 400px;
+        }
+        h1 {
+            color: #d00000;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            position: relative;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            margin-right: 10px;
+        }
+        #noBtn {
+            background-color: #8a8a8a;
+            color: white;
+            position: absolute;
+            transition: 0.1s;
+        }
+        #message {
+            display: none;
+            color: #590d22;
+            text-align: left;
+        }
+        #message h2 { text-align: center; color: #ff4d6d; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="askContainer">
+            <h1>Simran Kalra,<br>Will you be my Valentine? ❤️</h1>
+            <div class="btn-container">
+                <button id="yesBtn" onclick="showLove()">YES</button>
+                <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()" ontouchstart="moveNo()">NO</button>
+            </div>
+        </div>
+
+        <div id="message">
+            <h2>My Dearest Simran,</h2>
+            <p>From the moment you accepted my proposal, my world has felt like a true Empire. You are the peace in my heart and the strength in my soul.</p>
+            <p>I promise to cherish you, protect our bond from any "Buri Nazar," and build a life with you that is more beautiful than any script I've ever written.</p>
+            <p>I love you eternally.</p>
+            <p style="text-align: center;"><strong>Yours forever, Shivay</strong></p>
+        </div>
+    </div>
+
+    <script>
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            const container = document.querySelector('.container');
+            
+            // Randomly move the button anywhere on the screen
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+            noBtn.style.position = 'fixed';
+        }
+
+        function showLove() {
+            document.getElementById('askContainer').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
+            document.body.style.backgroundColor = "#ffccd5";
+        }
+    </script>
+</body>
+</html>
