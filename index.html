@@ -11,19 +11,18 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            /* Changed to a darker, more romantic Rose tone */
+            /* DARKER TONE FOR FIRST PAGE */
             background-color: #ff4d6d; 
             font-family: 'Georgia', serif;
             overflow: hidden;
             touch-action: none;
-            transition: background-color 0.5s ease;
         }
         .container {
             text-align: center;
             background: white;
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             width: 85%;
             max-width: 400px;
             position: relative;
@@ -49,12 +48,10 @@
             border-radius: 50px;
             cursor: pointer;
             z-index: 20;
-            font-weight: bold;
         }
         #yesBtn {
-            background-color: #ff85a1;
+            background-color: #ff4d6d;
             color: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         #noBtn {
             background-color: #8a8a8a;
@@ -73,7 +70,7 @@
         .heart {
             position: fixed;
             top: -10%;
-            color: #ffffff; /* White hearts look better on dark background */
+            color: #ff85a1;
             font-size: 20px;
             user-select: none;
             z-index: 1;
@@ -111,19 +108,18 @@
             const noBtn = document.getElementById('noBtn');
             noBtn.style.position = 'fixed';
             
-            // Keeps button inside the viewport boundaries
-            const padding = 20;
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+            // Ensures the button stays within the actual viewport
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             
-            noBtn.style.left = Math.max(padding, x) + 'px';
-            noBtn.style.top = Math.max(padding, y) + 'px';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
         }
 
         function showLove() {
             document.getElementById('askContainer').style.display = 'none';
             document.getElementById('message').style.display = 'block';
-            // Switches to your requested lighter tone for the second page
+            // SWITCH TO LIGHTER TONE ONLY ON SECOND PAGE
             document.body.style.backgroundColor = "#ffccd5";
             startHearts(); 
         }
@@ -137,4 +133,8 @@
                 heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
                 document.body.appendChild(heart);
                 setTimeout(() => heart.remove(), 5000);
-            }, 30
+            }, 300);
+        }
+    </script>
+</body>
+</html>
