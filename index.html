@@ -5,177 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Queen Simu</title>
     <style>
-        :root {
-            --primary-pink: #ff85a1;
-            --deep-rose: #d00000;
-            --soft-white: rgba(255, 255, 255, 0.95);
-        }
-
         body {
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #fce4ec 0%, #ffc1e3 100%);
+            margin: 0;
+            background-color: #fff0f3;
             font-family: 'Georgia', serif;
             overflow: hidden;
+            touch-action: none;
         }
-
-        .bg-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .heart-particle {
-            position: absolute;
-            color: var(--primary-pink);
-            opacity: 0.6;
-            animation: float 6s linear infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-
         .container {
-            z-index: 10;
             text-align: center;
-            background: var(--soft-white);
+            background: white;
             padding: 30px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             width: 85%;
             max-width: 400px;
             position: relative;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            z-index: 10;
         }
-
         h1 {
-            color: var(--deep-rose);
+            color: #d00000;
             font-size: 1.8rem;
             margin-bottom: 20px;
         }
-
         .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
             margin-top: 20px;
-            position: relative;
-            height: 150px; /* Space for the button to jump around */
+            min-height: 60px;
         }
-
         button {
             padding: 12px 25px;
             font-size: 1rem;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            position: absolute; /* Needed for the jumping logic */
-            transition: all 0.2s ease;
+            z-index: 20;
         }
-
         #yesBtn {
-            background-color: var(--primary-pink);
+            background-color: #ff4d6d;
             color: white;
-            left: 50%;
-            transform: translateX(-110%); /* Positioned to the left of center */
-            top: 50px;
         }
-
         #noBtn {
-            background-color: #e0e0e0;
-            color: #666;
-            left: 50%;
-            transform: translateX(10%); /* Positioned to the right of center */
-            top: 50px;
+            background-color: #8a8a8a;
+            color: white;
+            transition: 0.1s;
         }
-
         #message {
             display: none;
-            color: #4a0e0e;
+            color: #590d22;
+            text-align: left;
             line-height: 1.6;
         }
-
-        #message h2 { color: var(--deep-rose); font-style: italic; }
-
-        .final-line {
-            margin-top: 15px;
-            font-weight: bold;
-            color: var(--deep-rose);
+        #message h2 { text-align: center; color: #ff4d6d; }
+        
+        /* Subtle Floating Hearts */
+        .heart {
+            position: fixed;
+            top: -10%;
+            color: #ff85a1;
+            font-size: 20px;
+            user-select: none;
+            z-index: 1;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-hearts" id="heartPool"></div>
-
     <div class="container">
         <div id="askContainer">
-            <h1>Dearest Simu ❤️,<br>Will you be my Valentine?</h1>
+            <h1>Simu ❤️,<br>Will you be my Valentine? ❤️</h1>
             <div class="btn-container">
                 <button id="yesBtn" onclick="showLove()">Yes, Forever</button>
-                <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">No</button>
+                <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()" ontouchstart="moveNo()">No</button>
             </div>
         </div>
 
         <div id="message">
             <h2>My Dearest Simu ❤️</h2>
             <p>From the moment you came into my life, sab kuch acha lagne laga hai. Tum achi hoti ho toh mai aur acha ho jata hu.</p>
-            <p>You are the peace in my heart and the strength in my soul. I promise to cherish you and protect our bond from any <i>Buri Nazar</i>.</p>
+            <p>You are the peace in my heart and the strength in my soul. I promise to cherish you and protect our bond from any "Buri Nazar."</p>
             <p>Tum sirf meri Valentine nahi ho, tum meri life time forever wali partner ho jiske saath reh kar I will never get fed up. ✨</p>
             <p>And I truly wish ki tum humesha hasti khelti raho, khush raho aur roz mujhe apne pyaare pyaare kisse sunati raho. 🗣️❤️</p>
-            <p class="final-line">Meri Pyaari Simu 💝</p>
-            <p style="text-align: center; margin-top: 10px;"><strong>Yours forever, Shivay ❤️</strong></p>
+            <p style="font-weight: bold; color: #d00000; text-align: center;">Meri Pyaari Simu 💝</p>
+            <p style="text-align: center; margin-top: 20px;"><strong>Yours forever, Shivay ❤️</strong></p>
         </div>
     </div>
 
     <script>
-        // Floating Hearts
-        function createHeart() {
-            const heartPool = document.getElementById('heartPool');
-            if(!heartPool) return;
-            const heart = document.createElement('div');
-            heart.className = 'heart-particle';
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            heartPool.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
-        }
-        setInterval(createHeart, 500);
-
-        // Fixed Move Logic
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            const container = document.querySelector('.btn-container');
+            noBtn.style.position = 'fixed';
             
-            // Get container dimensions to keep button inside
-            const maxWidth = container.clientWidth - noBtn.clientWidth;
-            const maxHeight = container.clientHeight - noBtn.clientHeight;
+            // Ensures the button stays within the actual viewport
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             
-            // Generate random position within the container
-            const randomX = Math.floor(Math.random() * maxWidth);
-            const randomY = Math.floor(Math.random() * maxHeight);
-            
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
-            noBtn.style.transform = 'none'; // Remove the initial translateX
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
         }
 
         function showLove() {
             document.getElementById('askContainer').style.display = 'none';
             document.getElementById('message').style.display = 'block';
-            document.body.style.background = "#ffccd5";
+            document.body.style.backgroundColor = "#ffccd5";
+            startHearts(); // Starts the celebratory hearts only after YES
+        }
+
+        function startHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 300);
         }
     </script>
 </body>
