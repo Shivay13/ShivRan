@@ -5,86 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Queen Simu</title>
     <style>
+        :root {
+            --rose-red: #d00000;
+            --princess-pink: #ff85a1;
+            --glass-white: rgba(255, 255, 255, 0.85);
+        }
+
         body {
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: #fff0f3;
+            /* Romantic Gradient Background */
+            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
             font-family: 'Georgia', serif;
             overflow: hidden;
             touch-action: none;
         }
+
+        /* Floating Background Hearts */
+        .bg-heart {
+            position: fixed;
+            color: var(--princess-pink);
+            opacity: 0.3;
+            z-index: 0;
+            user-select: none;
+            pointer-events: none;
+            animation: float-up 8s linear infinite;
+        }
+
+        @keyframes float-up {
+            0% { transform: translateY(110vh) scale(1) rotate(0deg); opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+
         .container {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 85%;
-            max-width: 400px;
             position: relative;
             z-index: 10;
+            text-align: center;
+            background: var(--glass-white);
+            padding: 40px;
+            border-radius: 30px;
+            /* Premium Glassmorphism */
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 400px;
+            transition: all 0.5s ease;
         }
+
         h1 {
-            color: #d00000;
-            font-size: 1.8rem;
+            color: var(--rose-red);
+            font-size: 2.2rem;
             margin-bottom: 20px;
+            font-weight: normal;
+            line-height: 1.2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
         }
+
         .btn-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 30px;
             min-height: 60px;
         }
+
         button {
-            padding: 12px 25px;
-            font-size: 1rem;
+            padding: 14px 30px;
+            font-size: 1.1rem;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            z-index: 20;
+            font-family: 'Georgia', serif;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
+
         #yesBtn {
-            background-color: #ff4d6d;
+            background-color: var(--princess-pink);
             color: white;
+            font-weight: bold;
         }
+
+        #yesBtn:hover { transform: scale(1.1); background-color: #ff4d6d; }
+
         #noBtn {
-            background-color: #8a8a8a;
-            color: white;
+            background-color: #f0f0f0;
+            color: #888;
             transition: 0.1s;
         }
+
         #message {
             display: none;
-            color: #590d22;
+            color: #4a0e0e;
             text-align: left;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            animation: fadeIn 1.5s ease-in;
         }
-        #message h2 { text-align: center; color: #ff4d6d; }
-        
-        /* Subtle Floating Hearts */
-        .heart {
-            position: fixed;
-            top: -10%;
-            color: #ff85a1;
-            font-size: 20px;
-            user-select: none;
-            z-index: 1;
-            animation: fall linear forwards;
+
+        #message h2 { 
+            text-align: center; 
+            color: var(--rose-red); 
+            font-style: italic;
+            font-size: 1.8rem;
         }
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
+
+        .signature {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--rose-red);
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
+    <div id="heartsContainer"></div>
+
     <div class="container">
         <div id="askContainer">
-            <h1>Simu ❤️,<br>Will you be my Valentine? ❤️</h1>
+            <h1>Dearest Simu ❤️,<br>Will you be my Valentine?</h1>
             <div class="btn-container">
                 <button id="yesBtn" onclick="showLove()">Yes, Forever</button>
                 <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()" ontouchstart="moveNo()">No</button>
@@ -97,20 +148,30 @@
             <p>You are the peace in my heart and the strength in my soul. I promise to cherish you and protect our bond from any "Buri Nazar."</p>
             <p>Tum sirf meri Valentine nahi ho, tum meri life time forever wali partner ho jiske saath reh kar I will never get fed up. ✨</p>
             <p>And I truly wish ki tum humesha hasti khelti raho, khush raho aur roz mujhe apne pyaare pyaare kisse sunati raho. 🗣️❤️</p>
-            <p style="font-weight: bold; color: #d00000; text-align: center;">Meri Pyaari Simu 💝</p>
-            <p style="text-align: center; margin-top: 20px;"><strong>Yours forever, Shivay ❤️</strong></p>
+            <p class="signature">Meri Pyaari Simu 💝<br><br>Yours forever, Shivay ❤️</p>
         </div>
     </div>
 
     <script>
+        // Create romantic background hearts
+        function createBGHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.className = 'bg-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+        setInterval(createBGHearts, 500);
+
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
             noBtn.style.position = 'fixed';
-            
-            // Ensures the button stays within the actual viewport
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
         }
@@ -118,20 +179,9 @@
         function showLove() {
             document.getElementById('askContainer').style.display = 'none';
             document.getElementById('message').style.display = 'block';
-            document.body.style.backgroundColor = "#ffccd5";
-            startHearts(); // Starts the celebratory hearts only after YES
-        }
-
-        function startHearts() {
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.innerHTML = '❤️';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 5000);
-            }, 300);
+            document.body.style.background = "linear-gradient(135deg, #ffccd5 0%, #ff85a1 100%)";
+            // Intense celebration hearts
+            setInterval(createBGHearts, 100);
         }
     </script>
 </body>
